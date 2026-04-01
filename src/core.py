@@ -41,7 +41,7 @@ def fit_vecm_model(data: pd.DataFrame, k_ar_diff: int = 1, coint_rank: int = 1,
     return vec_res
 
 def plot_etf_prices(data: pd.DataFrame, output_path: Path):
- """Plot ETF prices """
+    """Plot ETF prices """
     fig, ax = plt.subplots(figsize=(10, 6))
     
     for col in data.columns:
@@ -55,7 +55,7 @@ def plot_etf_prices(data: pd.DataFrame, output_path: Path):
     plt.close()
 
 def plot_irf(irf, output_path: Path):
- """Plot Impulse Response Functions """
+    """Plot Impulse Response Functions """
     irf.plot(orth=False)
     plt.tight_layout()
     plt.savefig(output_path, dpi=100, bbox_inches='tight', facecolor='white')
