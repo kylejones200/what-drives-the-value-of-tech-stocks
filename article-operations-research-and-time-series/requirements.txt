@@ -1,0 +1,7 @@
+numpy
+pandas
+sklearn
+ortools
+transformers 
+datasets 
+torch

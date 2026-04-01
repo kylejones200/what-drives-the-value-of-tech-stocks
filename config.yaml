@@ -1,0 +1,25 @@
+data:
+  tickers:
+    - "XLK"
+    - "SMH"
+  start_date: "2015-01-01"
+  end_date: "2024-12-31"
+  output_file: "xlk_smh_prices.csv"
+
+analysis:
+  adf_test: true
+  johansen_test: true
+  vecm:
+    enabled: true
+    k_ar_diff: 1
+    coint_rank: 1
+    deterministic: "co"
+  irf:
+    enabled: true
+    periods: 10
+
+output:
+  figures_dir: "images"
+  figure_format: "png"
+  figure_dpi: 100
+
