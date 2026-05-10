@@ -1,35 +1,30 @@
+---
+author: "Kyle Jones"
+date_published: "April 30, 2025"
+date_exported_from_medium: "November 10, 2025"
+canonical_link: "https://medium.com/@kyle-t-jones/what-drives-the-value-of-tech-stocks-d86ee4f7b370"
+---
+
 # What Drives the Value of Tech Stocks? Some ETFs just move together. XLK tracks big tech. SMH tracks
 chipmakers. You can eyeball the chart and see they're correlated. But...
 
 ### What Drives the Value of Tech Stocks? Nonlinear Causality Between High Tech and Semiconductor ETFs(time series with python)
-Some ETFs just move together. XLK tracks big tech. SMH tracks
-chipmakers. You can eyeball the chart and see they're correlated. But
-correlation isn't the question. The question is: which one leads?
+Some ETFs just move together. XLK tracks big tech. SMH tracks chipmakers. You can eyeball the chart and see they're correlated. But correlation isn't the question. The question is: which one leads?
 
-We used Transfer Entropy, a nonlinear, model-free technique from
-information theory, to test directional influence. No assumptions. No
-models. Just signal flow: does knowing SMH's past improve your knowledge
-of XLK's future?
+We used Transfer Entropy, a nonlinear, model-free technique from information theory, to test directional influence. No assumptions. No models. Just signal flow: does knowing SMH's past improve your knowledge of XLK's future?
 
-It turns out the answer is yes --- consistently, measurably, and
-especially when it matters most.
+It turns out the answer is yes --- consistently, measurably, and especially when it matters most.
 
-Most causality tests assume linear relationships. Transfer Entropy
-doesn't. It doesn't care if the relationship is linear, quadratic,
-volatile, or buried under noise. It measures whether there's
-**additional information** in one time series that helps explain the
-next state of another. That's it.
+Most causality tests assume linear relationships. Transfer Entropy doesn't. It doesn't care if the relationship is linear, quadratic, volatile, or buried under noise. It measures whether there's **additional information** in one time series that helps explain the next state of another. That's it.
 
 Mathematically, it compares two conditional entropies:
 
 - How predictable is XLK from its own past?
 - How much more predictable is XLK if you also include SMH?
 
-If SMH adds information, Transfer Entropy shows it. And it works in one
-direction at a time, so you can test asymmetry.
+If SMH adds information, Transfer Entropy shows it. And it works in one direction at a time, so you can test asymmetry.
 
-We pulled 10 years of daily adjusted close data for XLK and SMH from
-Yahoo Finance (2015 to 2024). Then we:
+We pulled 10 years of daily adjusted close data for XLK and SMH from Yahoo Finance (2015 to 2024). Then we:
 
 1.  [Took first differences to make the series stationary.]
 2.  [Discretized the returns into 3 bins: down, flat, up.]
@@ -40,41 +35,25 @@ Across the full 10-year period, Transfer Entropy:
 - **SMH → XLK**: 0.0205
 - **XLK → SMH**: 0.0190
 
-The difference is small --- but persistent. Chipmakers transmit more
-information into the tech index than the other way around. That tracks
-with intuition. SMH reacts quickly to supply chain issues, innovation
-shocks, and fabrication risk. XLK reflects those shifts later.
+The difference is small --- but persistent. Chipmakers transmit more information into the tech index than the other way around. That tracks with intuition. SMH reacts quickly to supply chain issues, innovation shocks, and fabrication risk. XLK reflects those shifts later.
 
 ### Rolling Transfer Entropy: Seeing the Structure
-To move beyond a single number, we measured Transfer Entropy in a
-**rolling 100-day window**, then applied a **10-day moving average** to
-smooth the results. The result is a causal time series. You can now see
-when one ETF starts to lead or lag the other, and how the strength of
-influence changes with market conditions.
+To move beyond a single number, we measured Transfer Entropy in a **rolling 100-day window**, then applied a **10-day moving average** to smooth the results. The result is a causal time series. You can now see when one ETF starts to lead or lag the other, and how the strength of influence changes with market conditions.
 
 Here's the plot:
 
 
-SMH consistently leads XLK across nearly the entire decade. The strength
-of that lead widens in volatile periods --- early 2020, mid-2022, and
-again in late 2023. In less volatile markets, the TE values flatten, but
-the direction doesn't flip. SMH never becomes passive.
+SMH consistently leads XLK across nearly the entire decade. The strength of that lead widens in volatile periods --- early 2020, mid-2022, and again in late 2023. In less volatile markets, the TE values flatten, but the direction doesn't flip. SMH never becomes passive.
 
-This shows more than correlation. This is a time-structured information
-flow. You now know when the semiconductor sector starts moving
-first --- and when that signal fades.
+This shows more than correlation. This is a time-structured information flow. You now know when the semiconductor sector starts moving first --- and when that signal fades.
 
 ### Why This Matters
-Most financial models fail because they confuse noise with signal. What
-we showed instead is that signal exists, and it moves directionally. You
-don't need to build a model to benefit from that.
+Most financial models fail because they confuse noise with signal. What we showed instead is that signal exists, and it moves directionally. You don't need to build a model to benefit from that.
 
-Don't assume symmetry in the relationship. XLK doesn't give you the same
-clarity about SMH. Information flows one way more than the other.
+Don't assume symmetry in the relationship. XLK doesn't give you the same clarity about SMH. Information flows one way more than the other.
 
 ### If You Want to Run This Yourself
-Here's the full Python code to get the plot using
-`pyinform`:
+Here's the full Python code to get the plot using `pyinform`:
 
 ```python
 import pandas as pd
@@ -154,10 +133,3 @@ plt.tight_layout()
 plt.savefig("rolling_transfer_entropy_smoothed.png")
 plt.show()
 ```
-::::::::By [Kyle Jones](https://medium.com/@kyle-t-jones) on
-[April 30, 2025](https://medium.com/p/d86ee4f7b370).
-
-[Canonical
-link](https://medium.com/@kyle-t-jones/what-drives-the-value-of-tech-stocks-d86ee4f7b370)
-
-Exported from [Medium](https://medium.com) on November 10, 2025.
