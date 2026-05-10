@@ -40,19 +40,20 @@ def fit_vecm_model(data: pd.DataFrame, k_ar_diff: int = 1, coint_rank: int = 1,
     vec_res = vec_model.fit()
     return vec_res
 
-def plot_etf_prices(data: pd.DataFrame, output_path: Path):
+def plot_etf_prices(data: pd.DataFrame, output_path: Path, plot: bool = False):
     """Plot ETF prices """
-    fig, ax = plt.subplots(figsize=(10, 6))
+    if plot:
+        fig, ax = plt.subplots(figsize=(10, 6))
     
-    for col in data.columns:
-        ax.plot(data.index, data[col], label=col, linewidth=1.2)
+        for col in data.columns:
+            ax.plot(data.index, data[col], label=col, linewidth=1.2)
     
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Adjusted Close Price")
-    ax.legend(loc='best')
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Adjusted Close Price")
+        ax.legend(loc='best')
     
-    plt.savefig(output_path, dpi=100, bbox_inches="tight")
-    plt.close()
+        plt.savefig(output_path, dpi=100, bbox_inches="tight")
+        plt.close()
 
 def plot_irf(irf, output_path: Path):
     """Plot Impulse Response Functions """
