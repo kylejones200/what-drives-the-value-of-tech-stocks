@@ -1,3 +1,4 @@
+import signalplot
 import pandas as pd
 import numpy as np
 import pyinform.transferentropy as te
@@ -47,15 +48,7 @@ te_df = pd.DataFrame({
 te_df = te_df.rolling(window=10, min_periods=1).mean()
 # Minimalist Plot
 
-plt.rcParams.update({
-    "font.family": "serif",
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.spines.left": True,
-    "axes.spines.bottom": True,
-    "xtick.direction": "out",
-    "ytick.direction": "out",
-})
+signalplot.apply(font_family='serif')
 
 def adjust_spines(ax):
     ax.spines["left"].set_position(("outward", 5))
