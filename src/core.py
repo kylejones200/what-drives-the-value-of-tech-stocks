@@ -87,8 +87,8 @@ def compute_rolling_transfer_entropy(df: pd.DataFrame, var1: str, var2: str,
             te2 = te.transfer_entropy(var2_disc, var1_disc, k=k)
         except Exception:
             te1, te2 = np.nan, np.nan
-        te_1_to_2.append(te1)
-        te_2_to_1.append(te2)
+        pd.concat([te_1_to_2, te1])
+        pd.concat([te_2_to_1, te2])
     
     return te_1_to_2, te_2_to_1
 
