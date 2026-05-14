@@ -15,7 +15,7 @@ We used Transfer Entropy, a nonlinear, model-free technique from information the
 
 It turns out the answer is yes --- consistently, measurably, and especially when it matters most.
 
-Most causality tests assume linear relationships. Transfer Entropy doesn't. It doesn't care if the relationship is linear, quadratic, volatile, or buried under noise. It measures whether there's **additional information** in one time series that helps explain the next state of another. That's it.
+Most causality tests assume linear relationships. Transfer Entropy doesn't. It doesn't care if the relationship is linear, quadratic, volatile, or buried under noise. It measures whether there's additional information in one time series that helps explain the next state of another. That's it.
 
 Mathematically, it compares two conditional entropies:
 
@@ -32,13 +32,13 @@ We pulled 10 years of daily adjusted close data for XLK and SMH from Yahoo Finan
 
 Across the full 10-year period, Transfer Entropy:
 
-- **SMH → XLK**: 0.0205
-- **XLK → SMH**: 0.0190
+- SMH → XLK: 0.0205
+- XLK → SMH: 0.0190
 
 The difference is small --- but persistent. Chipmakers transmit more information into the tech index than the other way around. That tracks with intuition. SMH reacts quickly to supply chain issues, innovation shocks, and fabrication risk. XLK reflects those shifts later.
 
 ### Rolling Transfer Entropy: Seeing the Structure
-To move beyond a single number, we measured Transfer Entropy in a **rolling 100-day window**, then applied a **10-day moving average** to smooth the results. The result is a causal time series. You can now see when one ETF starts to lead or lag the other, and how the strength of influence changes with market conditions.
+To move beyond a single number, we measured Transfer Entropy in a rolling 100-day window, then applied a 10-day moving average to smooth the results. The result is a causal time series. You can now see when one ETF starts to lead or lag the other, and how the strength of influence changes with market conditions.
 
 Here's the plot:
 
