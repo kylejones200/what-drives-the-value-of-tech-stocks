@@ -39,7 +39,7 @@ def main():
         logging.info(f"Loading data from {args.data_path}...")
         data = pd.read_csv(args.data_path, parse_dates=["Date"], index_col="Date")
     else:
-                data = download_etf_data(
+        data = download_etf_data(
             config['data']['tickers'],
             config['data']['start_date'],
             config['data']['end_date']
