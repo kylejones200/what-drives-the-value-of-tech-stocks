@@ -1,7 +1,7 @@
 numpy
 pandas
-sklearn
+scikit-learn
 ortools
-transformers 
-datasets 
+transformers
+datasets
 torch
