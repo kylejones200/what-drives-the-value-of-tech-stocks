@@ -3,7 +3,6 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Tuple
 import yfinance as yf
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.vector_ar.vecm import coint_johansen, VECM
@@ -73,7 +72,7 @@ def compute_transfer_entropy(x: np.ndarray, y: np.ndarray, k: int = 1) -> float:
     return te.transfer_entropy(x_series, y_series, k=k)
 
 def compute_rolling_transfer_entropy(df: pd.DataFrame, var1: str, var2: str,
-                                    window: int = 100, bins: int = 3, k: int = 1) -> Tuple[list, list]:
+                                    window: int = 100, bins: int = 3, k: int = 1) -> tuple[list, list]:
     """Compute rolling transfer entropy."""
     te_1_to_2 = []
     te_2_to_1 = []
