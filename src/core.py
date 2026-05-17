@@ -53,18 +53,20 @@ def fit_vecm_model(
 
 def plot_etf_prices(data: pd.DataFrame, output_path: Path, plot: bool = False):
     """Plot ETF prices"""
-    if plot:
-        fig, ax = plt.subplots(figsize=(10, 6))
+    if not plot:
+        return
 
-        for col in data.columns:
-            ax.plot(data.index, data[col], label=col, linewidth=1.2)
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Adjusted Close Price")
-        ax.legend(loc="best")
+    for col in data.columns:
+        ax.plot(data.index, data[col], label=col, linewidth=1.2)
 
-        plt.savefig(output_path, dpi=100, bbox_inches="tight")
-        plt.close()
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Adjusted Close Price")
+    ax.legend(loc="best")
+
+    plt.savefig(output_path, dpi=100, bbox_inches="tight")
+    plt.close()
 
 
 def plot_irf(irf, output_path: Path):
