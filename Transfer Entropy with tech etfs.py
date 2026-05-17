@@ -293,7 +293,7 @@ for i in tqdm(range(window, len(df_diff))):
     try:
         te1 = te.transfer_entropy(smh, xlk, k=1)
         te2 = te.transfer_entropy(xlk, smh, k=1)
-    except:
+    except Exception:
         te1, te2 = np.nan, np.nan
     te_smh_to_xlk.append(te1)
     te_xlk_to_smh.append(te2)
@@ -387,7 +387,7 @@ for i in tqdm(range(window, len(df_diff))):
     try:
         te1 = te.transfer_entropy(smh, xlk, k=1)
         te2 = te.transfer_entropy(xlk, smh, k=1)
-    except:
+    except Exception:
         te1, te2 = np.nan, np.nan
     te_smh_to_xlk.append(te1)
     te_xlk_to_smh.append(te2)
