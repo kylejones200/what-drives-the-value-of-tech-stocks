@@ -43,7 +43,7 @@ def tokenize_time_series(series):
     )
 
 
-def main() -> None:
+def parameters() -> None:
     demand = [20, 30, 40, 35, 25]
 
     holding_cost = 2
@@ -85,6 +85,8 @@ def main() -> None:
     else:
         print("No optimal solution found.")
 
+
+def generate_synthetic_time_series_data() -> None:
     np.random.seed(42)
 
     n_samples = 100
@@ -109,7 +111,7 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-    tokens = [tokenize_time_series(row) for row in df.iloc[:, :-1].values]
+    tokens = [tokenize_time_series(row[:-1].values) for _, row in df.iterrows()]
 
     labels = df["label"].values
 
@@ -152,6 +154,8 @@ def main() -> None:
 
     print(f"Test Accuracy: {accuracy:.2f}")
 
+
+def notebook_step_005() -> None:
     np.random.seed(42)
 
     n_samples = 100
@@ -174,7 +178,7 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-    tokens = [tokenize_time_series(row) for row in df.iloc[:, :-1].values]
+    tokens = [tokenize_time_series(row[:-1].values) for _, row in df.iterrows()]
 
     labels = df["label"].values
 
@@ -217,6 +221,12 @@ def main() -> None:
     accuracy = accuracy_score(test_labels, predicted_labels)
 
     print(f"Test Accuracy: {accuracy:.2f}")
+
+
+def main() -> None:
+    parameters()
+    generate_synthetic_time_series_data()
+    notebook_step_005()
 
 
 if __name__ == "__main__":

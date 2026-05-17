@@ -14,6 +14,8 @@ from src.core import (
     perform_adf_test,
     perform_johansen_test,
     fit_vecm_model,
+    plot_etf_prices,
+    plot_irf,
 )
 
 def load_config(config_path: Path = None) -> dict:
@@ -50,30 +52,31 @@ def main():
     plot_etf_prices(data, output_dir / 'xlk_smh_prices.png')
     
     if config['analysis']['adf_test']:
-                for col in data.columns:
+        for col in data.columns:
             perform_adf_test(data[col], col)
-    
+
     if config['analysis']['johansen_test']:
-                perform_johansen_test(data)
-    
+        perform_johansen_test(data)
+
     if config['analysis']['vecm']['enabled']:
-                vec_res = fit_vecm_model(
+        vec_res = fit_vecm_model(
             data,
             config['analysis']['vecm']['k_ar_diff'],
             config['analysis']['vecm']['coint_rank'],
-            config['analysis']['vecm']['deterministic']
+            config['analysis']['vecm']['deterministic'],
         )
         logging.info(vec_res.summary())
-        
+
         if config['analysis']['irf']['enabled']:
-                        irf = vec_res.irf(config['analysis']['irf']['periods'])
+            irf = vec_res.irf(config['analysis']['irf']['periods'])
             plot_irf(irf, output_dir / 'vecm_irf.png')
-    
+
     logging.info(f"\nAnalysis complete. Figures saved to {output_dir}")
+
 
 if __name__ == "__main__":
     import pandas as pd
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
     main()
 
